@@ -2,7 +2,7 @@ export interface ImputFindCustomerDto {
     id: string;
 }
 
-export interface OutputCustomerDto {
+export interface OutputFindCustomerDto {
     id: string,
     name: string,
     address: {
