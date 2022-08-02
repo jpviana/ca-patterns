@@ -36,16 +36,18 @@ describe("Test find customer use case", () => {
         const input = { id: "123" }
 
         const output = {
-            id: "123",
-            name: "Joao",
+            id: customer.id,
+            name: customer.name,
             address: {
-                street: "street",
-                number: 123,
-                zip: "zip",
-                city: "city"
+                street: customer.Address.street,
+                number: customer.Address.number,
+                zip: customer.Address.zip,
+                city: customer.Address.city,
             }
         }
 
         const result = await usecase.execute(input);
+
+        expect(result).toEqual(output);
     });
 })
