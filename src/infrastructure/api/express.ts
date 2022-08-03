@@ -1,3 +1,4 @@
+import { productRoute } from './routes/product.route';
 import { customerRoute } from './routes/customer.route';
 import { Sequelize } from 'sequelize-typescript';
 import express, { Express } from 'express';
@@ -8,6 +9,7 @@ export const app: Express = express();
 
 app.use(express.json());
 app.use("/customer", customerRoute)
+app.use("/product", productRoute)
 
 export let sequelize: Sequelize;
 

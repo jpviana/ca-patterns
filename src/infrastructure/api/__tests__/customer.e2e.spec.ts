@@ -38,4 +38,36 @@ describe("E2e test for customer", () => {
 
         expect(response.status).toBe(500);
     })
+
+    it("should not list all customer", async () => {
+        const response = await request(app)
+            .post("/customer")
+            .send({
+                name: "John",
+                address: {
+                    street: "Street",
+                    number: 123,
+                    zip: "zipcode",
+                    city: "City",
+                },
+            });
+        expect(response.status).toBe(200);
+
+        const response2 = await request(app)
+            .post("/customer")
+            .send({
+                name: "John2",
+                address: {
+                    street: "Street2",
+                    number: 1234,
+                    zip: "zipcode2",
+                    city: "City2",
+                },
+            });
+        expect(response2.status).toBe(200);
+
+        const listResponse = await request(app).get("/customer").send();
+        expect(listResponse.status).toBe(200);
+        expect(listResponse.body.customers.length).toBe(2);
+    })
 });
